@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="app">
+        <div>{{colleges}}</div>
+        <p>-----------------------------</p>
+        <ul>
+            <li>{{colleges[0]}}</li>
+            <li>{{colleges[1]}}</li>
+            <li>{{colleges[2]}}</li>
+        </ul>
+        <p>-----------------------------</p>
+        <ul>
+            <li v-for="list in colleges">{{list}}</li>
+        </ul>
+    </div>
+    <script src="js/vue.global.js"></script>
+    <script>
+    const listApp = {
+        data() {
+            return {
+                colleges : ['list-01','list-02','list-03']
+            }
+        }
+    }
+    
+        const app = Vue.createApp(listApp).mount('#app');
+    </script>
+</body>
+</html>
