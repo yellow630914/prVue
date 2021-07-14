@@ -6,6 +6,31 @@
     <title></title>
 </head>
 <body>
+    <div id="app">
+        <h2>{{ msg }}</h2>
+        <p>------------------------------</p>
+        <button @click="brand()">Hello</button>
+        <button @click="url()">URL</button>
+    </div>
+    <script src="js/vue.global.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    msg: ""
+                }
+            },
 
+            methods : {
+                brand() {
+                    this.msg = 'Hello Vue!';
+                },
+
+                url() {
+                    this.msg = 'https://v3.cn.vuejs.org/';
+                }
+            }
+        }).mount('#app');
+    </script>
 </body>
 </html>
