@@ -1,30 +1,33 @@
 ﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+  <meta charset="utf-8" />
+  <title></title>
 </head>
+
 <body>
-    <div id="app">
-        <!--在p中放置一個msg-->
-        <p>{{ msg }}</p>
-    </div>
-    <!--這個msg因為不在#app內所以不會被作用-->
+  <div id="app">
+    <!--在p中放置一個msg-->
     <p>{{ msg }}</p>
-    <!--從本地載入vue-->
-    <script src="js/vue.global.js"></script>
-    <script>
-        //HelloVue為一常量,其中data屬性回傳值為{msg: 'Hello Vue'}對應<p>的msg
-        const HelloVue = {
-            data() {
-                return {
-                    msg: 'Hello Vue!'
-                }
-            }
-        }
-        //創建vue的實體導入HelloVue並指向id為app的元素
-        const app = Vue.createApp(HelloVue).mount('#app');
-    </script>
+  </div>
+  <!--這個msg因為不在#app內所以不會被作用-->
+  <p>{{ msg }}</p>
+  <!--從本地載入vue-->
+<script src="js/vue.global.js"></script>
+<script>
+  //HelloVue為一常量,其中data屬性回傳值為{msg: 'Hello Vue'}對應<p>的msg
+  const HelloVue = {
+    data() {
+      return {
+      	msg: 'Hello Vue!'
+      }
+    }
+  }
+  //創建vue的實體導入HelloVue並指向id為app的元素
+  const app = Vue.createApp(HelloVue).mount('#app');
+</script>
 </body>
+
 </html>

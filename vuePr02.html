@@ -2,40 +2,40 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+	<meta charset="utf-8" />
+	<title></title>
 </head>
 <body>
-    <div id="app">
-        <!--第一種方法直接引用-->
-        <div>{{colleges}}</div>
-        <!--結果為['list-01','list-02','list-03']-->
-        <p>-----------------------------</p>
-        <!--第二種方法分別將特定欄位的資料填入<li>-->
-        <ul>
-            <li>{{colleges[0]}}</li>
-            <li>{{colleges[1]}}</li>
-            <li>{{colleges[2]}}</li>
-        </ul>
-        <!--結果是正常的list-->
-        <p>-----------------------------</p>
-        <!--第三種方法是使用vue的指令-->
-        <ul>
-            <li v-for="list in colleges">{{list}}</li>
-        </ul>
-        <!--結果與第二種一樣,但是使用vue指令之後更精簡,也更有拓展性-->
-    </div>
-    <script src="js/vue.global.js"></script>
-    <script>
-    const listApp = {
-        data() {
-            return {
-                colleges: ['list-01', 'list-02', 'list-03']   //Array型別的資料
-            }
-        }
-    }
-    
-        const app = Vue.createApp(listApp).mount('#app');
-    </script>
+	<div id="app">
+		<!--第一種方法直接引用-->
+		<div>{{colleges}}</div>
+		<!--結果為['list-01','list-02','list-03']-->
+		<p>-----------------------------</p>
+		<!--第二種方法分別將特定欄位的資料填入<li>-->
+		<ul>
+			<li>{{colleges[0]}}</li>
+			<li>{{colleges[1]}}</li>
+			<li>{{colleges[2]}}</li>
+		</ul>
+		<!--結果是正常的list-->
+		<p>-----------------------------</p>
+		<!--第三種方法是使用vue的指令-->
+		<ul>
+				<li v-for="list in colleges">{{list}}</li>
+		</ul>
+		<!--結果與第二種一樣,但是使用vue指令之後更精簡,也更有拓展性-->
+	</div>
+<script src="js/vue.global.js"></script>
+<script>
+	const listApp = {
+		data() {
+			return {
+				colleges: ['list-01', 'list-02', 'list-03']   //Array型別的資料
+			}
+		}
+	}
+		
+	const app = Vue.createApp(listApp).mount('#app');
+</script>
 </body>
 </html>

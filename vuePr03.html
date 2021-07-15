@@ -2,39 +2,39 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    <title></title>
+  <meta charset="utf-8" />
+  <title></title>
 </head>
 <body>
-    <div id="app">
-        <h2>{{ msg }}</h2>  <!--此元素用於顯示事件結果,與msg同步-->
-        <p>------------------------------</p>
-        <!--使用v-on:click將按鈕指定為brand()的觸發器-->
-        <button v-on:click="brand()">Hello</button>
-        <!--v-on:click的另一種寫法可以讓code更簡潔-->
-        <button @click="url()">URL</button>
-    </div>
-    <script src="js/vue.global.js"></script>
-    <script>
-        const app = Vue.createApp({
-            data() {
-                return {
-                    //原本為空的msg,由brand()與url()等methods去改變
-                    msg: ""
-                }
-            },
-            //methods是Vue.createApp中的屬性之一,可以寫入函式以供使用		
-            methods : {
-                brand() {
-                    //觸發時將msg改為指定字串
-                    this.msg = 'Hello Vue!';
-                },  //this指的是vue.create本身
+  <div id="app">
+    <h2>{{ msg }}</h2>  <!--此元素用於顯示事件結果,與msg同步-->
+    <p>------------------------------</p>
+    <!--使用v-on:click將按鈕指定為brand()的觸發器-->
+    <button v-on:click="brand()">Hello</button>
+    <!--v-on:click的另一種寫法可以讓code更簡潔-->
+    <button @click="url()">URL</button>
+  </div>
+<script src="js/vue.global.js"></script>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        	//原本為空的msg,由brand()與url()等methods去改變
+          msg: ""
+      }
+    },
+    //methods是Vue.createApp中的屬性之一,可以寫入函式以供使用		
+    methods : {
+      brand() {
+        //觸發時將msg改為指定字串
+        this.msg = 'Hello Vue!';
+      },  //this指的是vue.create本身
 
-                url() {
-                    this.msg = 'https://v3.cn.vuejs.org/';
-                }
-            }
-        }).mount('#app');
-    </script>
+      url() {
+        this.msg = 'https://v3.cn.vuejs.org/';
+      }
+    }
+  }).mount('#app');
+</script>
 </body>
 </html>
