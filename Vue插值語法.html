@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+  <div id='app'>
+    <!--這個msg會隨著model中的msg改變-->
+    <h2>會變的: {{ msg }}</h2>
+    <!--這個msg只會被賦值一次,之後即使model中的msg改變也不會隨著改變-->
+    <h2 v-once>不變的: {{ msg }}</h2>
+    <p>----------------------------------------</p>
+    <!--這個msg與下面的是一樣的-->
+    <h2>{{ msg }}</h2>
+    <!--這個元素中的text是由vue的語法填充,若是其中已經有其他內他會覆蓋之-->
+    <h2 v-text="msg"></h2>
+    <p>----------------------------------------</p>
+    <!--直接將site放入會當作文本呈現-->
+    {{site}}
+    <!--使用了v-html之後,就能夠正常顯示連結了-->
+    <div v-html="site"></div>
+    <p>----------------------------------------</p>
+    <!--這個msg會正常顯示-->
+    <h2>{{ msg }}</h2>
+    <!--這個msg因為v-pre而不去編譯,所以顯示{{ msg }}-->
+    <h2 v-pre>{{ msg }}</h2>
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          msg: 'Hello Vue!',
+          site: '<a href="https://v3.cn.vuejs.org/">Vue.js</a>'
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
