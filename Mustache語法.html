@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+	<div id='app'>
+		<!--在{{ msg }}後也可增加一段text-->
+		<h2>{{ msg }}  https://v3.cn.vuejs.org/</h2>
+		<!--{{}}中可以有簡單的表達式,如下-->
+		<h2>{{ msg + '  ' + site }}</h2>
+		<!--在通一個元素裡可同時存在兩個{{}}-->
+		<h2>{{ msg }}  {{ site }}</h2>
+		<!--在{{}}中也可進行簡單的計算-->
+		<h2>計算: {{ count * 10 }}</h2>
+	</div>
+	<script src='js/vue.global.js'></script>
+	<script>
+		const app = Vue.createApp({
+			data() {
+				return {
+					msg: 'Hello Vue!',
+					site: 'https://v3.cn.vuejs.org/',
+					count: '2'
+				}
+			}
+		}).mount('#app');
+	</script>
+</body>
+</html>
