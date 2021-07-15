@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+  <style>
+    /*指定v-cloak的屬性*/
+    [v-cloak]{
+      display:none;
+    }
+  </style>
+</head>
+<body>
+  <div id='app'>
+    <!--普通的{{ msg }}-->
+    <h2>沒有v-cloak: {{ msg }}</h2>
+    <!--v-claok會在Vue編譯完成之後消失-->
+    <h2 v-cloak>有v-cloak: {{ msg }}</h2>
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    //這裡用setTimeout延遲5秒,模擬網路不順的情況
+    setTimeout(()=>{
+      const app = Vue.createApp({
+      data() {
+        return {
+          msg: 'Hello Vue!'
+        }
+      }
+    }).mount('#app');
+    }
+    ,5000)
+  </script>
+</body>
+</html>
