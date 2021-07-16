@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+  <div id='app'>
+    <!--直接設定style-->
+    <h2 style="font-size: 60px;">{{ msg }}</h2>
+    <!--透過vue設定style-->
+    <h2 :style="{fontSize: '60px'}">{{ msg }}</h2>
+    <!--設定多項style-->
+    <h2 :style="{fontSize: f60, backgroundColor: bColor}">{{ msg }}</h2>
+    <!--直接使用封裝好的style-->
+    <h2 :style="mixStyle()">{{ msg }}</h2>
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          msg: 'Hello Vue!',
+          f60: '60px',
+          bColor: 'red'
+        }
+      },
+      methods: {
+        //封裝可讓v-bind使用的style
+        mixStyle(){
+          return {fontSize: this.f60, backgroundColor: this.bColor}
+        }
+      },
+    }).mount('#app');
+  </script>
+</body>
+</html>

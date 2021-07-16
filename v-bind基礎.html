@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+  <div id='app'>
+    <h2>{{ msg }}</h2>
+    <!--沒有加入v-bind的元素,其在屬性中的值會直接視為字串-->
+    <img src="imgUrl" alt="">
+    <!--加入v-bind之後就可以調用model裡的值了-->
+    <img v-bind:src="imgUrl" v-bind:alt="alt">
+    <!--v-bind的簡寫使用':'-->
+    <a :href="site">vue</a>
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          msg: 'Hello Vue!',
+          imgUrl:'https://i.imgur.com/EpGLUi4.gif',
+          alt:'報社',
+          site:'https://v3.cn.vuejs.org/'
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
