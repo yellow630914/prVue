@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+  <div id='app'>
+    <!--指定函式帶有(),代表輸入空值-->
+    <button @click="btn1()">btn1</button>
+    <!--指定函式時沒有(),則選擇自動填入事件本身-->
+    <button @click="btn2">btn2</button>
+    <!--填入的參數可以是數字,字串,布林值,同時也可以是data內的物件,他會去vue中找msg-->
+    <button @click="btn3(123, 'fff', true ,msg)">btn3</button>
+    <!--當你需要填入參數與事件本身時可以使用$,通常需要填入事件時會放在最後-->
+    <button @click="btn4(123, 'fff', true ,msg ,$event)">btn4</button>
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          msg: "哭阿"
+        }
+      },
+      methods: {
+        btn1(logText){
+          //有(),而沒有填入參數時會log undefined
+          console.log(logText);
+        },
+        btn2(logText){
+          //沒有()時直接log事件本身
+          console.log(logText);
+        },
+        btn3(log1,log2,log3,log4){
+          //一一顯示個參數
+          console.log(log1,log2,log3,log4);
+          //直接抓取參數array
+          console.log(arguments);
+        },
+        btn4(log1,log2,log3,log4,event){
+          //顯示事件本身
+          console.log(log1,log2,log3,log4,event);
+        }
+      },
+    }).mount('#app');
+  </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+  <style>
+    .box{
+      background-color: aquamarine;
+      width: 200px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <div id='app'>
+    <!--演示如何用v-on的修飾詞阻止冒泡-->
+    <div class="box" @click="boxClick">
+      <!--在事件後.stop可以修飾成阻止冒泡的效果-->
+      <button @click.stop="btnClick">Click Me!</button>
+    </div>
+    <p>--------------------------------------------</p>
+    <form action="https://cn.vuejs.org/">
+      <input type="submit" value="提交" @click="doSbmit">
+    </form>
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          msg: 'Hello Vue!'
+        }
+      },
+      methods: {
+        boxClick(){
+          console.log("you click the BOX!!")
+        },
+        btnClick(){
+          //event.stopPropagation();  若是要阻止冒泡也可從事件本身下手
+          console.log("you click the BTN!!")
+        }
+      },
+    }).mount('#app');
+  </script>
+</body>
+</html>
