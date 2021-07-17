@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+  <div id='app'>
+      <!--顯示目標-->
+      <p>喬治。馬丁</p>
+      <p>--------------------------------------------</p>
+      <!--在view端計算-->
+      <p>{{ firstName + "。" + lastName }}</p>
+      <p>--------------------------------------------</p>
+      <!--在viewmodel端函式計算-->
+      <p>{{ getFullName() }}</p>
+      <p>--------------------------------------------</p>
+      <!--在viewmodel端用computed計算-->
+      <p>{{ fullName }}</p>
+
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          firstName:"喬治",
+          lastName:"馬丁"
+        }
+      },
+      computed:{
+        fullName(){
+            //使用computed計算後的是屬性,並非函式,就像firstName
+            return this.firstName + "。" + this.lastName
+        }
+      },
+      methods: {
+        getFullName(){
+            return this.firstName + "。" + this.lastName   
+        }  
+      },
+    }).mount('#app');
+  </script>
+</body>
+</html>

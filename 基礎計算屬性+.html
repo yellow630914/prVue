@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+  <div id='app'>
+    <h2>會員總積分: {{ totalScore }}</h2>
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          menbers:[
+            {id:'n001' ,name:'張三' ,score:500},
+            {id:'n002' ,name:'李四' ,score:400},
+            {id:'n003' ,name:'王五' ,score:220},
+            {id:'n004' ,name:'羅翔' ,score:320}
+          ]
+        }
+      },
+      computed:{
+        totalScore(){
+          let total = 0;
+          this.menbers.forEach( item=>{
+            total += item.score;
+          }
+          );
+          return total;
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

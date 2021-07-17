@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+  <div id='app'>
+    <h2>{{ fullName }}</h2>
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          firstName:"喬治",
+          lastName:"馬丁"
+        }
+      },
+      computed:{
+        //computed中的屬性其實自帶set與get
+        fullName: {
+          //當外部要設定fullName時,才觸發set
+          set(input){
+            //從console中app.fullName更改時可以觸發
+            console.log("setTrigger",input);
+            let aray = input.split("。");
+            this.firstName = aray[0];
+            this.lastName = aray[1];
+          },
+          //當外部要調用fullName時,因為很少使用set,只要沒有設定到fullName的值,默認觸發get
+          get(){
+            //被view調用時直接觸發
+            console.log("getTrigger");
+            return this.firstName + "。" + this.lastName;
+          }
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

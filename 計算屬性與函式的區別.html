@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+  <div id='app'>
+      <!--用computed計算的fullName-->
+      <p>{{ fullName }}</p>
+      <p>{{ fullName }}</p>
+      <p>{{ fullName }}</p>
+      <p>{{ fullName }}</p>
+      <p>{{ fullName }}</p>
+      <!--調用完成後log訊息只有一個,代表計算執行了1次-->
+      <p>--------------------------------------------</p>
+      <!--用methods計算的getFullName-->
+      <p>{{ getFullName() }}</p>
+      <p>{{ getFullName() }}</p>
+      <p>{{ getFullName() }}</p>
+      <p>{{ getFullName() }}</p>
+      <p>{{ getFullName() }}</p>
+      <!--調用完成後log訊息重複了五個,代表計算執行了5次-->
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          firstName:"喬治",
+          lastName:"馬丁"
+        }
+      },
+      computed:{
+        fullName(){
+            //當執行時log一段computed訊息
+            console.log("-----this is conputed-----")
+            return this.firstName + "。" + this.lastName
+        }
+      },
+      methods: {
+        getFullName(){
+            //當執行時log一段methods訊息
+            console.log("-----this is methods-----")
+            return this.firstName + "。" + this.lastName   
+        }  
+      },
+    }).mount('#app');
+  </script>
+</body>
+</html>
