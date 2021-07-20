@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+
+<body>
+  <div id="app">
+    <!--真正的條件渲染,實現的方式是創建與銷毀-->
+    <p v-if="flag">isRain</p>
+    <p v-else>notRain</p>
+    <p>---------------------------------</p>
+    <!--元素總會被渲染,實現方式是使用CSS-->
+    <p v-show="flag">isPain</p>
+    <p v-show="!flag">notPain</p>
+    <p>---------------------------------</p>
+    <button @click="flag=!flag">switch</button>
+  </div>
+<script src="js/vue.global.js"></script>
+<script>
+  const HelloVue = {
+    data() {
+      return {
+        //用於條件渲染的標旗
+      	flag: true
+      }
+    }
+  }
+  //創建vue的實體導入HelloVue並指向id為app的元素
+  const app = Vue.createApp(HelloVue).mount('#app');
+</script>
+</body>
+
+</html>

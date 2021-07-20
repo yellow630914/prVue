@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+  <div id='app'>
+    <!--遍歷物件中的值-->
+    <ul>
+      <li v-for="item in person">{{item}}</li>
+    </ul>
+    <p>-----------------------------------</p>
+    <!--連同key值一起呼叫-->
+    <ul>
+      <li v-for="(item, key) in person">{{key}} : {{item}}</li>
+    </ul>
+    <p>-----------------------------------</p>
+    <!--物件也可呼叫index值-->
+    <ul>
+      <li v-for="(item ,key ,index) in person">{{index+1}}. {{key}} : {{item}}</li>
+    </ul>
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          person:{
+            name:"羅翔",
+            age: 18,
+            friends:["張三","李四"]
+          }
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+  <style>
+    ul li{
+      list-style:none;
+      line-height:30px;
+    }
+  </style>
+</head>
+<body>
+  <div id='app'>
+    <h3>搜索列表</h3>
+    <!--搜索欄,v-model綁定至searchStr-->
+    <label><input type="text" placeholder="請輸入姓名" v-model="searchStr"></label>
+    <div>
+      <h3>排序</h3>
+      <button @click="setOrderType(2)">年齡升序</button>
+      <button @click="setOrderType(1)">年齡降序</button>
+      <button @click="setOrderType(0)">還原</button>
+    </div>
+    <ul>
+      <!--呈現出篩選過的物件-->
+      <li v-for="(p, index) in filterPersons">
+        {{index+1}}. 姓名:{{p.name}}  性別:{{p.sex}}  年齡:{{p.age}}
+      </li>
+    </ul>
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          person:[
+            {name:"張三",sex:"男",age:8},
+            {name:"李四",sex:"男",age:16},
+            {name:"王五",sex:"女",age:28},
+            {name:"趙六",sex:"男",age:76},
+            {name:"羅翔",sex:"男",age:55},
+            {name:"七七",sex:"女",age:568},
+            {name:"阿巴",sex:"男",age:35},
+            {name:"九",sex:"男",age:25},
+            {name:"實瑠乃",sex:"女",age:18},
+            {name:"一一",sex:"男",age:18},
+            {name:"一二三",sex:"女",age:14},
+          ],
+          searchStr:'',  //放置搜索關鍵字的地方
+          orderType: 0
+        }
+      },
+      computed:{
+        //搜索屬性,經過篩選計算後傳至v-for呈現
+        filterPersons(){
+          //抓取data(解構語法)
+          const{person,searchStr,orderType}=this;
+          //取得原資料,準備篩選
+          let arr = [...person];
+          //當searchStr被填入關鍵字,trim()是去頭尾空格
+          if(searchStr.trim()){
+            //arr取得篩選資料
+            arr = person.filter((p)=>{
+              //當名字與seachStr相同時return(篩選出來)
+              return p.name.indexOf(searchStr) !== -1;
+            })
+          }
+          //篩選後排序
+          if(orderType){
+            //排序函式
+            arr.sort((p1,p2)=>{
+              if(orderType === 1){
+                //降序
+                return p2.age - p1.age
+              }else{
+                //升序
+                return p1.age - p2.age
+              }
+            })
+          }
+          //回傳arr,若沒被篩選過則保持原樣
+          return arr;
+        }
+      },
+      methods:{
+        //設定排序狀態
+        setOrderType(orderType){
+          this.orderType = orderType;
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>

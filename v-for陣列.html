@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+</head>
+<body>
+  <div id='app'>
+    <!--p作為ary的載體遍歷並生成以ary為準的<li>-->
+    <ul>
+      <li v-for="p in ary">{{p}}</li>
+    </ul>
+    <p>-----------------------------------</p>
+    <!--也可以呼叫內建的ary的index作為呈現的文本-->
+    <ul>
+      <li v-for="(p, index) in ary">{{index + 1}}. {{p}}</li>
+    </ul>
+    <p>-----------------------------------</p>
+    <!--當ary中的值為物件時可以在Mustache中使用物件下的屬性-->
+    <ul>
+      <li v-for="(p, index) in menber">{{index + 1}}. 姓名:{{p.name}}  年齡:{{p.age}} 性別:{{p.sex}}</li>
+    </ul>
+  </div>
+  <script src='js/vue.global.js'></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          ary:["張三","李四","王五","羅翔"],
+          menber:[
+            {name:'張三', age:35, sex:"male"},
+            {name:'李四', age:25, sex:"male"},
+            {name:'王五', age:39, sex:"female"},
+            {name:'羅翔', age:40, sex:"male"}
+          ] 
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
