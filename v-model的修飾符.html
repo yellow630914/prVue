@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+
+<body>
+  <div id="app">
+    <!--lazy修飾符,等用戶輸入到一定段落才跟著同步-->
+    <input type="text" v-model.lazy="msg">
+    <h2>{{msg}}</h2>
+    <br>
+    <p>=======================================</p>
+    <br>
+    <!--number修飾符,保證取得的資料是number型別-->
+    <input type="number" v-model.number="age">
+    <h2>{{age}} -- {{typeof age}}</h2>
+    <br>
+    <p>=======================================</p>
+    <br>
+    <!--tirm修飾符,去掉取得資料頭尾的空格-->
+    <input type="text" v-model.trim="name">
+    <h2>{{name}}</h2>
+  </div>
+<script src="js/vue.global.js"></script>
+<script>
+  const HelloVue = {
+    data() {
+      return {
+        msg: 'Hello Vue!',
+        age: 0,
+        name: ''
+      }
+    }
+  }
+  const app = Vue.createApp(HelloVue).mount('#app');
+</script>
+</body>
+
+</html>
