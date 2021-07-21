@@ -24,7 +24,7 @@
     </div>
     <ul>
       <!--呈現出篩選過的物件-->
-      <li v-for="(p, index) in filterPersons">
+      <li v-for="(p, index) in filterPersons" :key="id">
         {{index+1}}. 姓名:{{p.name}}  性別:{{p.sex}}  年齡:{{p.age}}
       </li>
     </ul>
@@ -35,17 +35,17 @@
       data() {
         return {
           person:[
-            {name:"張三",sex:"男",age:8},
-            {name:"李四",sex:"男",age:16},
-            {name:"王五",sex:"女",age:28},
-            {name:"趙六",sex:"男",age:76},
-            {name:"羅翔",sex:"男",age:55},
-            {name:"七七",sex:"女",age:568},
-            {name:"阿巴",sex:"男",age:35},
-            {name:"九",sex:"男",age:25},
-            {name:"實瑠乃",sex:"女",age:18},
-            {name:"一一",sex:"男",age:18},
-            {name:"一二三",sex:"女",age:14},
+            {name:"張三",sex:"男",age:8,id="001"},
+            {name:"李四",sex:"男",age:16,id="002"},
+            {name:"王五",sex:"女",age:28,id="003"},
+            {name:"趙六",sex:"男",age:76,id="004"},
+            {name:"羅翔",sex:"男",age:55,id="005"},
+            {name:"七七",sex:"女",age:568,id="006"},
+            {name:"阿巴",sex:"男",age:35,id="007"},
+            {name:"九",sex:"男",age:25,id="008"},
+            {name:"實瑠乃",sex:"女",age:18,id="009"},
+            {name:"一一",sex:"男",age:18,id="010"},
+            {name:"一二三",sex:"女",age:14,id="011"},
           ],
           searchStr:'',  //放置搜索關鍵字的地方
           orderType: 0

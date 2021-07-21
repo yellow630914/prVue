@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+
+<body>
+  <div id="app">
+    <label>
+      <!--v-model同意與否的實例-->
+      <input type="checkbox" v-model="isAgree">同意協議
+    </label>
+    <h2>是否同意:{{ isAgree ? '同意':'不同意' }}</h2>
+    <button :disabled="!isAgree">註冊</button>
+    <br>
+    <p>=======================================</p>
+    <br>
+    <!--v-model多個選項可勾選實例-->
+    <label>興趣:</label>
+      <input type="checkbox" value="籃球" v-model="habbits">籃球
+      <input type="checkbox" value="棒球" v-model="habbits">棒球
+      <input type="checkbox" value="遊戲" v-model="habbits">遊戲
+      <input type="checkbox" value="音樂" v-model="habbits">音樂
+    <h2>興趣是: {{habbits}}</h2>
+    <br>
+    <p>=======================================</p>
+    <br>
+    <!--v-model與v-for生成的元素實例-->
+    <label v-for="holo in hololiver" :for="holo">
+      <input type="checkbox" :value="holo" :id="holo" v-model="hololikes">{{holo}}
+    </label>
+    <h2>{{ hololikes }}</h2>
+  </div>
+  
+  
+<script src="js/vue.global.js"></script>
+<script>
+  const HelloVue = {
+    data() {
+      return {
+        isAgree: false,
+        habbits: [],
+        hololiver: ["Gura","Pekora","Marin","Kiryu"],
+        hololikes: []
+      }
+    }
+  }
+  const app = Vue.createApp(HelloVue).mount('#app');
+</script>
+</body>
+
+</html>

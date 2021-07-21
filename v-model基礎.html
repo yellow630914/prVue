@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+
+<body>
+  <div id="app">
+    <!--v-model會使text與msg同步,當輸入時msg也會隨之改變-->
+    <input type="text" v-model="msg">
+    <h2>{{msg}}</h2>
+  </div>
+<script src="js/vue.global.js"></script>
+<script>
+  const HelloVue = {
+    data() {
+      return {
+        msg:'Hello Vue!'
+      }
+    }
+  }
+  const app = Vue.createApp(HelloVue).mount('#app');
+</script>
+</body>
+
+</html>
