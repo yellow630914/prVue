@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    #app{margin: 50px auto;width: 600px;}
+    fieldset{
+      border:1px solid cornflowerblue;
+      margin-bottom: 20px;
+    }
+    fieldset input{
+      width: 200px;
+      height: 30px;
+      margin:10px 0;
+    }
+    table{
+      width: 600px;
+      border:2px solid cornflowerblue;
+      text-align: center;
+    }
+    thead{
+      background-color: cornflowerblue;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <fieldset>
+      <legend>註冊系統(vue):</legend>
+      <div>
+        <!--v-model綁定,並去頭尾空格-->
+        <label>
+          姓名: <input type="text" placeholder="請輸入姓名" v-model.trim="newPerson.name">
+        </label>
+      </div>
+      <div>
+        <!--同上-->
+        <label>
+          年齡: <input type="text" placeholder="請輸入年齡" v-model.trim="newPerson.age">
+        </label>
+      </div>
+      <div>
+        <label>
+          性別: 
+          <select v-model="newPerson.sex">
+            <option value="男" >男</option>
+            <option value="女">女</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <label>
+          手機: <input type="text" placeholder="請輸入手機" v-model.trim="newPerson.phone">
+        </label>
+      </div>
+      <div>
+        <label>
+          <!--按下實觸發addNewPerson()-->
+          <button @click="addNewPerson()">註冊新用戶</button>
+        </label>
+      </div>
+    </fieldset>
+    <!--===============================================================-->
+    <table>
+      <!--=======================-->
+      <thead>
+        <tr>
+          <td>姓名</td>
+          <td>性別</td>
+          <td>年齡</td>
+          <td>手機</td>
+          <td>刪除</td>
+        </tr>
+      </thead>
+      <!--=======================-->
+      <tbody>
+        <!--v-for生成表格-->
+        <tr v-for="(p, index) in person">
+          <td>{{p.name}}</td>
+          <td>{{p.sex}}</td>
+          <td>{{p.age}}</td>
+          <td>{{p.phone}}</td>
+          <!--當按下時觸發delP(),參數填入index-->
+          <td><button @click="delP(index)">Delete</button></td>
+        </tr>
+      </tbody>
+      <!--=======================-->
+    </table>
+  </div>
+<script src="js/vue.global.js"></script>
+<script>
+  const HelloVue = {
+    data() {
+      return {
+        person: [
+            {name:"張三",sex:"男",age:8,phone:"001"},
+            {name:"李四",sex:"男",age:16,phone:"002"},
+            {name:"王五",sex:"女",age:28,phone:"003"},
+            {name:"趙六",sex:"男",age:76,phone:"004"},
+            {name:"羅翔",sex:"男",age:55,phone:"005"},
+            {name:"七七",sex:"女",age:568,phone:"006"},
+            {name:"阿巴",sex:"男",age:35,phone:"007"},
+            {name:"九",sex:"男",age:25,phone:"008"},
+            {name:"實瑠乃",sex:"女",age:18,phone:"009"},
+            {name:"一一",sex:"男",age:18,phone:"010"},
+            {name:"一二三",sex:"女",age:14,phone:"011"}
+          ],
+        newPerson: {name:"", sex:"", age:undefined, phone:""}
+      }
+    },
+    methods: {
+      //刪除物件
+      delP(index){
+        //依參數刪除某位置後一個物件
+        this.person.splice(index, 1)
+      },
+      //新增資料
+      addNewPerson(){
+        //取得各新註冊資料,並解構
+        const {name, age, sex, phone} = this.newPerson;
+        //輸入資料是否完整
+        if(!name || !age || !sex || !phone){
+          //不完整則提醒用戶,並跳出
+          alert("輸入不完整");
+          return
+        }else{
+          //於頭部插入資料
+          this.person.unshift(this.newPerson);
+          //清空newPerson
+          this.newPerson = {name:"", sex:"", age:undefined, phone:""};
+        }
+      }
+    },
+  }
+  const app = Vue.createApp(HelloVue).mount('#app');
+</script>
+</body>
+
+</html>
