@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    .temp{
+      background-color: cornflowerblue;
+      width: 200px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!--放入組件-->
+    <button-counter></button-counter>
+  </div>
+<script src="js/vue.global.js"></script>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+      }
+    }
+  });
+  //在createAPP下創建一個全域組件,組件格式是component(組件名,{ 組件內容 })
+  app.component('button-counter',{
+    //component的內容跟creatApp非常相像
+    data(){
+      return {
+        count: 0
+      }
+    },
+    //這是組件的模板,可以放入html中
+    template:`
+      <button @click="count++">
+        你點擊了{{count}}次按鈕
+      </button>
+    `
+  })
+  app.mount('#app');
+</script>
+</body>
+
+</html>
