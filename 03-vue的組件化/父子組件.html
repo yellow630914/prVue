@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+
+<body>
+  <div id="app">
+    <!--box可以說是app(根組件)的子組件-->
+    <!--而box-counter是box的子組件-->
+    <box></box>
+    <!--那麼app是否可以在不將box-counter加入子組件的情況直接調用?-->
+    <box-count></box-count>
+    <!--不行-->
+  </div>
+<script src="js/vue.global.js"></script>
+<script>
+  const boxCount = {
+    data(){
+      return {
+        Count:0
+      }
+    },
+    template:`
+    <button @click="Count++">點擊了{{Count}}次</button>
+    `
+  }
+  const box = {
+    components:{
+      "box-count":boxCount
+    },
+    template:`
+    <div style="width: 200px; height: 200px; background-color: aqua;">
+      盒子組件
+      <box-count></box-count>
+    </div>
+    `
+  }
+  
+
+
+  const app = Vue.createApp({
+    data() {
+      return {
+      }
+    },
+    components:{
+      "box":box
+    }
+  });
+  app.mount('#app');
+</script>
+</body>
+
+</html>
