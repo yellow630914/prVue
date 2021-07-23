@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+</head>
+
+<body>
+  <div id="app">
+    <!--調用btn組件-->
+    <btn></btn>
+  </div>
+  <!--BtnCounter的template-->
+  <template id="btnCounterTemplate">
+    <button @click="count++">你點擊了{{count}}次</button>
+  </template>
+
+<script src="js/vue.global.js"></script>
+<script>
+  //局部組件BtnCounter
+  const BtnCounter = {
+    data(){
+      return {
+        count: 0
+      }
+    },
+    //到View中去尋找id是btnCounterTemplate的template
+    template:"#btnCounterTemplate"
+  }
+
+  const app = Vue.createApp({
+    data() {
+      return {
+      }
+    },
+    components:{
+      //將BtnCounter調為app的子組件
+      "btn":BtnCounter
+    }
+  });
+  app.mount('#app');
+</script>
+</body>
+
+</html>
