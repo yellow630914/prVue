@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    .box{
+      background-color: cornflowerblue;
+      width: 200px;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <btn-counter></btn-counter>
+  </div>
+  <template id="btnCounterTemplate">
+    <div class="box">
+      <button @click="localCounter++">你點擊了{{localCounter}}次</button>
+      <h2> {{msg}} </h2>
+    </div>
+  </template>
+<script src="js/vue.global.js"></script>
+<script>
+  const btnCounter = {
+    data(){
+      return{
+        localCounter:0
+      }
+    },
+    template:"#btnCounterTemplate"
+  }
+  const app = Vue.createApp({
+    data() {
+      return {
+        msg:"Hello Vue"
+      }
+    },
+    components:{
+      "btn-counter":btnCounter
+    }
+  });
+  app.mount('#app');
+</script>
+</body>
+
+</html>
