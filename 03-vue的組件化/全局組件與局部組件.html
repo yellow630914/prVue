@@ -9,25 +9,78 @@
 
 <body>
   <div id="app">
-  </div>
-  <div id="root">
+    <!--使用全局組件,可以使用-->
+    <lk-box></lk-box>
+    <!--這是一個掛在app下的局部組件,可以在app內使用-->
+    <btn-counter></btn-counter>
+    <!--這是另一個局部組件-->
+    <local-box></local-box>
   </div>
 <script src="js/vue.global.js"></script>
 <script>
+  //註冊局部組件
+  const btnCounter = {
+    data(){
+      return {
+        localCount:0
+      }
+    },
+    template:`
+    <button @click="localCount++">點擊了局部{{localCount}}次</button>
+    `
+  }
+
+  //盒子局部組件
+  const localBox = {
+    //註冊其他局部組件,使其能在這裡使用
+    components:{
+      'btn-counter':btnCounter
+    },
+    template:`
+    <div style="width: 200px; height: 200px; background-color: aqua;">
+      盒子組件
+      <btn-counter></btn-counter>
+    </div>
+    `
+  }
+
+  //根組件
   const app = Vue.createApp({
     data() {
       return {
         msg:"Hello Vue!!"
       }
+    },
+    //註冊組件
+    components:{
+      'btn-counter':btnCounter,
+      'local-box':localBox
     }
-  }).mount('#app');
-  const root = Vue.createApp({
-    data() {
+   });
+
+   //按鍵全局組件
+   app.component('button-counter',{
+    data(){
       return {
-        site:"https://www.bilibili.com/video/BV1rE411x7vd?p=42&spm_id_from=pageDriver"
+        count: 0
       }
-    }
-  }).mount('#root');
+    },
+    template:`
+      <button @click="count++">
+        你點擊了{{count}}次按鈕
+      </button>
+    `
+  });
+  
+  //盒子全局組件
+  app.component("lk-box",{
+    template:`
+    <div style="width: 200px; height: 200px; background-color: red;">
+      盒子組件
+    </div>
+    `
+  })
+  app.mount('#app');
 </script>
 </body>
 
