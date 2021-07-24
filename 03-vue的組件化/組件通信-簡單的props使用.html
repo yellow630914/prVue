@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    .temp{
+      background-color: cornflowerblue;
+      width: 200px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <!--用brand與livers接收了app中的msg1與msg2-->
+    <box :brand="msg1" :livers="msg2"></box>
+  </div>
+  <template id="box">
+    <div class="temp">
+      <p>-----------------</p>
+      <!--在模板中使用props-->
+      <h2>{{brand}}</h2>
+      <ul>
+        <li v-for="item in livers">
+          {{item}}
+        </li>
+      </ul>
+      <p>-----------------</p>
+    </div>
+  </template>
+<script src="js/vue.global.js"></script>
+<script>
+  const Box = {
+    //可以在實體化時去接收父子件的資料
+    props:["brand","livers"],
+    template:'#box'
+  };
+
+
+  const app = Vue.createApp({
+    data() {
+      return {
+        //父子件的資料
+        msg1: 'hololive',
+        msg2: ['Gura','Peko','Kiryu']
+      }
+    },
+    components:{
+      "box" : Box
+    }
+  }).mount('#app');
+</script>
+</body>
+
+</html>
