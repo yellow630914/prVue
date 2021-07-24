@@ -16,8 +16,10 @@
 
 <body>
   <div id="app">
-    <!--用brand與livers接收了app中的msg1與msg2-->
+    <!--正確的依型別傳入-->
     <box :brand="msg1" :livers="msg2"></box>
+    <!--傳入object和數字-->
+    <box :brand="obj" :livers="number"></box>
   </div>
 
   <!--box的模板-->
@@ -39,8 +41,11 @@
 <script>
   
   const Box = {
-    //可以在實體化時去接收父子件的資料
-    props:["brand","livers"],
+    //限定brand跟livers傳入時的型別
+    props:{
+      brand:String,
+      livers:Array
+    },
     template:'#box'
   };
 
@@ -50,7 +55,9 @@
       return {
         //父子件的資料
         msg1: 'hololive',
-        msg2: ['Gura','Peko','Kiryu']
+        msg2: ['Gura','Peko','Kiryu'],
+        number: 123,
+        obj: {Gura:"cute"}
       }
     },
     components:{
