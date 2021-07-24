@@ -16,10 +16,12 @@
 
 <body>
   <div id="app">
-    <!--正確的依型別傳入-->
+    <!--正確的依規則傳入-->
     <box :brand="msg1" :livers="msg2"></box>
-    <!--傳入object和數字-->
-    <box :brand="obj" :livers="number"></box>
+    <!--未依規則傳入livers,會警告-->
+    <box :brand="msg1"></box>
+    <!--未依規則傳入brand,會呼叫defaut值-->
+    <box :livers="msg2"></box>
   </div>
 
   <!--box的模板-->
@@ -41,10 +43,11 @@
 <script>
   
   const Box = {
-    //限定brand跟livers傳入時的型別
+    //限定brand跟livers傳入時的必要性與默認值
     props:{
-      brand:String,
-      livers:Array
+      //type可以設定型別,required可以設定是否必要,default設定默認值
+      brand:{type:String, required:true ,default:"This is default"},
+      livers:{type:Array, required:true},
     },
     template:'#box'
   };
