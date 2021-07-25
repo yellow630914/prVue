@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    .main{
+      background-color: black;
+      width: 400px;
+      height: 400px;
+      padding: 50px;
+    }
+    .box{
+      background-color: cornflowerblue;
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--父組件-->
+  <div id="app" class="main">
+    <!--@box-click就是一個監聽"box-click發射器"的監聽器,當監聽到事件發生時觸發boxFunc-->
+    <box @box-click="boxFunc"></box>
+  </div>
+  <!--子組件-->
+  <template id="box">
+    <div class="box">
+      <button @click="btnClick">Click Me!</button>
+    </div>
+  </template>
+<script src="js/vue.global.js"></script>
+<script>
+  const Box = {
+    template:"#box",
+    methods:{
+      btnClick(){
+        console.log("click")
+        //這是box-click發射器
+        this.$emit('box-click')
+      }
+    }    
+  };
+
+  const app = Vue.createApp({
+    data() {
+      return {
+      }
+    },
+    components:{
+      "box":Box
+    },
+    methods: {
+      boxFunc(){
+        //子組件的按鈕時觸發
+        console.log("子組件的按鈕發生了點擊")
+      } 
+    }
+  });
+  app.mount('#app');
+</script>
+</body>
+
+</html>
