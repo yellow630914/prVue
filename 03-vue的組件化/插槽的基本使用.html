@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    .box{
+      background-color: cornflowerblue;
+      width: 200px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <box>
+      <!--填入插槽的內容-->
+      <p>我是大便</p>
+    </box>
+    <box>
+      <!--填入插槽的內容-->
+      <p>我是好白癡</p>
+    </box>
+    <!--沒有填入,顯示默認內容-->
+    <box></box>
+  </div>
+  <!--Box組件-->
+  <template id="box">
+    <div class="box">
+      <h2>Hoyolive</h2>
+      <!--這是插槽-->
+      <slot>默認內容</slot>
+    </div>
+  </template>
+
+<script src="js/vue.global.js"></script>
+<script>
+  const Box = {
+    template:"#box"
+  }
+
+  const app = Vue.createApp({
+    data() {
+      return {
+      }
+    },
+    components:{
+      "box":Box
+    }
+  });
+  app.mount('#app');
+</script>
+</body>
+
+</html>

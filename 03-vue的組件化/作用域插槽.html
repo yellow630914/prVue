@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    .box{
+      background-color: cornflowerblue;
+      width: 200px;
+      margin: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <box></box>
+
+    <p>------------------------</p>
+
+    <box>
+      <!--v-slot:default="此處為取得的資料命名"-->
+      <template v-slot:default="slotProps">
+        <!--以命名為slotProps為例,在後面加上之前綁定的屬性即可取得對應資料-->
+        <span>{{slotProps.msg}}</span>
+        <ul>
+          <!--也可用在v-for之類的指令內-->
+          <li v-for="name in slotProps.data">{{name}}</li>
+        </ul>
+      </template>
+    </box>
+  </div>
+
+  <template id="box">
+    <div class="box">
+      <!--綁定到子組件的data中-->
+      <slot :data="nameArr" :msg="msg">
+        <!--默認的-->
+        <ul style="margin: auto;">
+          <li v-for="name in nameArr">{{name}}</li>
+        </ul>
+      </slot>
+    </div>
+  </template>
+
+<script src="js/vue.global.js"></script>
+<script>
+  const Box = {
+    data(){
+      return {
+        msg: "MMO",
+        nameArr: ["FF14","WOW","GW2","ERO"]
+      }
+    },
+    template:"#box"
+  }
+
+
+  const app = Vue.createApp({
+    data() {
+      return {
+
+      }
+    },
+    components:{
+      "box":Box
+    }
+  });
+  app.mount('#app');
+</script>
+</body>
+
+</html>

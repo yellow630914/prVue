@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    .box{
+      background-color: cornflowerblue;
+      width: 200px;
+      height: 200px;
+      margin: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--父組件的模板-->
+  <div id="app">
+    <!--取得的isShow是父組件的-->
+    <box v-show="isShow"></box>
+  </div>
+  <!--子組件的模板-->
+  <template id="box">
+    <div class="box">
+      <!--取得的isShow是子組件的-->
+      <button v-show="isShow">Vue!</button>
+    </div>
+  </template>
+
+<script src="js/vue.global.js"></script>
+<script>
+  //子組件
+  const Box = {
+    data(){
+      return {
+        isShow:false
+      }
+    },
+    template:"#box"
+  }
+  //父組件
+  const app = Vue.createApp({
+    data() {
+      return {
+        isShow:true
+      }
+    },
+    components:{
+      "box":Box
+    }
+  });
+  app.mount('#app');
+</script>
+</body>
+
+</html>

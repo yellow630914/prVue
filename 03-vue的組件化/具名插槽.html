@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    .box{
+      background-color: cornflowerblue;
+      width: 200px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <box>
+      <!--用v-slot填入slot1-->
+      <template v-slot:slot1>
+        <p>Dark Soul</p>
+      </template>
+      <!--用v-slot填入slot2-->
+      <template v-slot:slot2>
+        <p>BloodBorne</p>
+      </template>
+      <!--用v-slot填入slot3-->
+      <template v-slot:slot3>
+        <p>Sekiro:Shadow Die Twice</p>
+      </template>
+    </box>
+  </div>
+
+
+  <!--Box組件-->
+  <template id="box">
+    <div class="box">
+      <h2>Miyazaki Hidetaka</h2>
+      <!--這是插槽1-->
+      <slot name="slot1">默認內容1</slot>
+      <!--這是插槽2-->
+      <slot name="slot2">默認內容2</slot>
+      <!--這是插槽3-->
+      <slot name="slot3">默認內容3</slot>
+    </div>
+  </template>
+
+<script src="js/vue.global.js"></script>
+<script>
+  const Box = {
+    template:"#box"
+  }
+
+  const app = Vue.createApp({
+    data() {
+      return {
+      }
+    },
+    components:{
+      "box":Box
+    }
+  });
+  app.mount('#app');
+</script>
+</body>
+
+</html>
