@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    .box{
+      background-color: cornflowerblue;
+      width: 200px;
+      height: 200px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--父組件-->
+  <div id="app">
+    <!--父組件中的子組件,用ref綁定取得-->
+    <box ref="box1"></box>
+    <!--按下時觸發有取得子組件的函式-->
+    <button @click="getChildComponent">Pray the Sun!</button>
+  </div>
+
+  <template id="box">
+    <div class="box">
+      <button @click="btnClick">Click ME!</button>
+    </div>
+  </template>
+
+<script src="js/vue.global.js"></script>
+<script>
+  //子組件
+  const Box = {
+    data(){
+      return {
+        msg: "Hellolive"
+      }
+    },
+    methods: {
+      btnClick(){
+        console.log("Click!")
+      }
+    },
+    template:"#box"
+  }
+
+  const app = Vue.createApp({
+    data() {
+      return {
+      }
+    },
+    components:{
+      "box":Box
+    },
+    methods:{
+      getChildComponent(){
+        //使用$refs去呼叫所有在父組件中被ref命名過的子組件
+        console.log(this.$refs)
+        //使用$refs.box1去呼叫名字叫"box1"的子組件(ref過)
+        console.log(this.$refs.box1)
+        //去找到子組件中data()的資料
+        console.log(this.$refs.box1.msg)
+        //使用子組件中的函式
+        this.$refs.box1.btnClick()
+      }
+    }
+  });
+  app.mount('#app');
+</script>
+</body>
+
+</html>

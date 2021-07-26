@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    .box{
+      background-color: cornflowerblue;
+      width: 200px;
+      height: 200px;
+      padding: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <!--父組件-->
+  <div id="app">
+    <!--父組件中的子組件,用ref綁定取得-->
+    <box></box>
+  </div>
+
+  <template id="box">
+    <div class="box">
+      <btn></btn>
+    </div>
+  </template>
+
+  <template id="btn">
+    <button @click="btnClick">點擊了{{count}}次按鈕</button>
+  </template>
+
+<script src="js/vue.global.js"></script>
+<script>
+  //子組件
+  const Btn = {
+    data(){
+      return {
+        count: 0
+      }
+    },
+    template:"#btn",
+    methods: {
+      btnClick(){
+        this.count++
+        //取得父組件中的msg
+        console.log(this.$parent.msg)
+        //取得爺組件中的msg
+        console.log(this.$parent.$parent.msg)
+        //取得根組件的msg
+        console.log(this.$root.msg)
+      }
+    },
+  }
+  //父組件
+  const Box = {
+    data(){
+      return {
+        msg:"HelloLive"
+      }
+    },
+    components:{
+      "btn":Btn
+    },
+    methods:{
+
+    },
+    template:"#box"
+  }
+
+  const app = Vue.createApp({
+    data() {
+      return {
+        msg:"Im root"
+      }
+    },
+    components:{
+      "box":Box
+    },
+    methods:{
+      
+    }
+  });
+  app.mount('#app');
+</script>
+</body>
+
+</html>
